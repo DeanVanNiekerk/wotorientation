@@ -15,8 +15,8 @@ function getDeviceOrientation() {
 function getDeviceWidth() {
   const deviceOrientation = getDeviceOrientation();
   return deviceOrientation === 'portrait'
-    ? Math.max(document.documentElement!.clientWidth, window.innerWidth || 0)
-    : Math.max(document.documentElement!.clientHeight, window.innerHeight || 0);
+    ? Math.max(document.documentElement ? document.documentElement.clientWidth : 0, window.innerWidth || 0)
+    : Math.max(document.documentElement ? document.documentElement.clientHeight : 0, window.innerHeight || 0);
 }
 
 
