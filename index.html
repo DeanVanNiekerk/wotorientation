@@ -5,8 +5,8 @@
 <script>
 
 function getDeviceOrientation() {
-  if ((window.screen as any).orientation) {
-    return (window.screen as any).orientation.type.includes('landscape') ? 'landscape' : 'portrait';
+  if (window.screen.orientation) {
+    return window.screen.orientation.type.includes('landscape') ? 'landscape' : 'portrait';
   }
   // iOS/safari
   return Math.abs(+window.orientation) === 90 ? 'landscape' : 'portrait';
