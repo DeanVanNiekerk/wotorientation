@@ -1,38 +1,13 @@
-<p>wot orientation</p>
+<html lang="en">
+  <head>
+   
+  </head>
 
-<div id="app"></div>
+  <body>
+    <h3>wot orientation</h3>
 
-<script>
-  
-  import MobileDetect from "mobileDetect";
-  
-  const mobileDetect = new MobileDetect(window.navigator.userAgent);
+    <pre id="app"></pre>
 
-function getDeviceOrientation() {
-  if (window.screen.orientation) {
-    return window.screen.orientation.type.includes('landscape') ? 'landscape' : 'portrait';
-  }
-  // iOS/safari
-  return Math.abs(+window.orientation) === 90 ? 'landscape' : 'portrait';
-}
-
-function getDeviceWidth() {
-  const deviceOrientation = getDeviceOrientation();
-  return deviceOrientation === 'portrait'
-    ? Math.max(document.documentElement ? document.documentElement.clientWidth : 0, window.innerWidth || 0)
-    : Math.max(document.documentElement ? document.documentElement.clientHeight : 0, window.innerHeight || 0);
-}
-
-
-const appDiv = document.getElementById('app');
-
-const data = {
-  orientationBase: window.orientation,
-  orientation: getDeviceOrientation(),
-  deviceWidth: getDeviceWidth(),
-  mobile: mobileDetect.mobile(),
-};
-
-appDiv.innerHTML = `${JSON.stringify(data)}`;
-
-</script>
+    <script type="module" src="orientation.js"></script>
+  </body>
+</html>
