@@ -1,1 +1,33 @@
-<p>TEST</p>
+<p>wotorientation</p>
+
+<div id="app"></div>
+
+<script>
+
+function getDeviceOrientation() {
+  if ((window.screen as any).orientation) {
+    return (window.screen as any).orientation.type.includes('landscape') ? 'landscape' : 'portrait';
+  }
+  // iOS/safari
+  return Math.abs(+window.orientation) === 90 ? 'landscape' : 'portrait';
+}
+
+function getDeviceWidth() {
+  const deviceOrientation = getDeviceOrientation();
+  return deviceOrientation === 'portrait'
+    ? Math.max(document.documentElement!.clientWidth, window.innerWidth || 0)
+    : Math.max(document.documentElement!.clientHeight, window.innerHeight || 0);
+}
+
+
+const appDiv: HTMLElement = document.getElementById('app');
+
+const data = {
+  orientationBase: window.orientation,
+  orientation: getDeviceOrientation(),
+  deviceWidth: getDeviceWidth(),
+};
+
+appDiv.innerHTML = `${JSON.stringify(data)}`;
+
+</script>
