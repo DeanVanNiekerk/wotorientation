@@ -3,6 +3,10 @@
 <div id="app"></div>
 
 <script>
+  
+  import MobileDetect from "mobileDetect";
+  
+  const mobileDetect = new MobileDetect(window.navigator.userAgent);
 
 function getDeviceOrientation() {
   if (window.screen.orientation) {
@@ -20,12 +24,13 @@ function getDeviceWidth() {
 }
 
 
-const appDiv: HTMLElement = document.getElementById('app');
+const appDiv = document.getElementById('app');
 
 const data = {
   orientationBase: window.orientation,
   orientation: getDeviceOrientation(),
   deviceWidth: getDeviceWidth(),
+  mobile: mobileDetect.mobile(),
 };
 
 appDiv.innerHTML = `${JSON.stringify(data)}`;
