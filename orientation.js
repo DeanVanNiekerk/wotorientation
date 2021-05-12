@@ -11,6 +11,20 @@ function getDeviceOrientation() {
 //   return Math.abs(+window.orientation) === 90 ? "landscape-primary" : "portrait-primary";
 }
 
+const getOrientation = () => {
+  let orientation =
+    (window.screen.orientation || {}).type || window.screen['mozOrientation'] || window.screen['msOrientation'];
+
+  // Fallback 1 - try deprecated 'window.orientation'
+  if (!orientation && window.orientation != undefined)
+    orientation = window.orientation === 0 ? 'portrait-primary' : 'landscape-primary';
+
+  // Fallback 2 - compare height and width
+  if (!orientation) orientation = window.innerHeight > window.innerWidth ? 'portrait-primary' : 'landscape-primary';
+
+  return orientation;
+};
+
 function getDeviceWidth() {
   const deviceOrientation = getDeviceOrientation();
   return (deviceOrientation === "portrait-primary" || deviceOrientation === "portrait-secondary")
@@ -30,6 +44,7 @@ const data = {
   "window.orientation": window.orientation ?? "null",
   "window.screen.orientation.type": getDeviceOrientation() ?? "null",
   "MobileDetect.mobile()": mobileDetect.mobile() ?? "null",
+  "calculatedOrientation": getOrientation(),
 };
 
 // console.log(data)
