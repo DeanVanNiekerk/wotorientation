@@ -44,6 +44,8 @@ const data = {
   "window.orientation": window.orientation ?? "null",
   "window.screen.orientation.type": getDeviceOrientation() ?? "null",
   "MobileDetect.mobile()": mobileDetect.mobile() ?? "null",
+  "MobileDetect.phone()": mobileDetect.phone() ?? "null",
+  "MobileDetect.tablet()": mobileDetect.tablet() ?? "null",
   "calculatedOrientation": getOrientation(),
 };
 
